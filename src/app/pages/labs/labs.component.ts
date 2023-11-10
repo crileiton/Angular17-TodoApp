@@ -16,6 +16,9 @@ export class LabsComponent {
     'Create new app',
     'Serve app',
     'Create new component'
-  ]
+  ];
+
+  name = 'Cristian';
+  age = 27;
 
 }
