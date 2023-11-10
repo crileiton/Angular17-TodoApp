@@ -11,12 +11,12 @@ import { CommonModule } from '@angular/common';
 export class LabsComponent {
 
   greeting = 'Hello World!';
-  tasks = [
+  tasks = signal([
     'Install Angular CLI',
     'Create new app',
     'Serve app',
     'Create new component'
-  ];
+  ]);
 
   name = signal('Cristian');
   age = 27;
