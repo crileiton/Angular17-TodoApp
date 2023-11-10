@@ -25,7 +25,7 @@
   <button (dblclick)="clickHandler()">Double click</button>
 
   <p>(change)</p>
-  <input type="number" [value]="person.age" (change)="changeHandler($event)">
+  <input type="number" [value]="person().age" (change)="changeHandler($event)">
 
   <p>(keydown)</p>
   <input type="text" [value]="person.name" (keydown)="keydownHandler($event)">
@@ -44,4 +44,18 @@
       {{ i }}-{{ task }}
     </li>
   </ul>
+  <hr>
+  <div *ngIf="1 !== 1">
+    My content
+  </div>
+  <div *ngIf="name() === 'Cristian'">
+    I'm Cristian
+  </div>
+  <input type="number" [value]="person().age" (change)="changeAge($event)">
+  <div *ngIf="person().name === 'Cristian' && person().age >= 18; else elseBlock">
+    I'm Cristian and I'm 18 years old or more
+  </div>
+  <ng-template #elseBlock>
+    <div>I'm Cristian and I'm not 18 years old or more</div>
+  </ng-template>
 </div>
