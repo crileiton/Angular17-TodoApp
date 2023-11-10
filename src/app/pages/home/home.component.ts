@@ -43,7 +43,16 @@ export class HomeComponent {
     };
     this.tasks.update((tasks) => [...tasks, newTask]);
   }
+
   deleteTask(index: number) {
     this.tasks.update((tasks) => tasks.filter((_, i) => i !== index));
+  }
+
+  toggleChecked(index: number) {
+    this.tasks.update((tasks) =>
+      tasks.map((task, i) =>
+        i === index ? { ...task, complete: !task.complete } : task
+      )
+    );
   }
 }
