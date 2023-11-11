@@ -33,15 +33,14 @@ export class HomeComponent {
   newTaskCtrl = new FormControl('', {
     nonNullable: true,
     validators: [
-      Validators.required,
-      Validators.pattern(/^\S+(\s\S+)*$/)
+      Validators.required
     ]
   });
 
   changeHandler() {
     if (this.newTaskCtrl.valid) {
-      const title = this.newTaskCtrl.value;
-      this.addTask(title.trim());
+      const title = this.newTaskCtrl.value.trim();
+      this.addTask(title);
       this.newTaskCtrl.reset();
     }
   }
