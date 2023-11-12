@@ -16,17 +16,17 @@ export class HomeComponent {
     {
       id: Date.now(),
       title: 'Install Angular CLI',
-      complete: true
+      completed: true
     },
     {
       id: Date.now(),
       title: 'Style app',
-      complete: false
+      completed: false
     },
     {
       id: Date.now(),
       title: 'Finish app',
-      complete: true
+      completed: true
     }
   ]);
 
@@ -49,7 +49,7 @@ export class HomeComponent {
     const newTask = {
       id: Date.now(),
       title,
-      complete: false
+      completed: false
     };
     this.tasks.update((tasks) => [...tasks, newTask]);
   }
@@ -61,7 +61,7 @@ export class HomeComponent {
   toggleChecked(index: number) {
     this.tasks.update((tasks) =>
       tasks.map((task, i) =>
-        i === index ? { ...task, complete: !task.complete } : task
+        i === index ? { ...task, completed: !task.completed } : task
       )
     );
   }
