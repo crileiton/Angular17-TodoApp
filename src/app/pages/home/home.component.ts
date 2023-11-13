@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -13,21 +13,21 @@ import { Task } from './../../models/task.model';
 })
 export class HomeComponent {
   tasks = signal<Task[]>([
-    {
-      id: Date.now(),
-      title: 'Install Angular CLI',
-      completed: true
-    },
-    {
-      id: Date.now(),
-      title: 'Style app',
-      completed: false
-    },
-    {
-      id: Date.now(),
-      title: 'Finish app',
-      completed: true
-    }
+    // {
+    //   id: Date.now(),
+    //   title: 'Install Angular CLI',
+    //   completed: true
+    // },
+    // {
+    //   id: Date.now(),
+    //   title: 'Style app',
+    //   completed: false
+    // },
+    // {
+    //   id: Date.now(),
+    //   title: 'Finish app',
+    //   completed: true
+    // }
   ]);
 
   filter = signal<'all' | 'pending' | 'completed'>('all');
@@ -49,6 +49,20 @@ export class HomeComponent {
       Validators.required
     ]
   });
+
+  constructor() {
+    effect(() => {
+      const tasks = this.tasks();
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    });
+  }
+
+  ngOnInit() {
+    const tasks = localStorage.getItem('tasks');
+    if (tasks) {
+      this.tasks.set(JSON.parse(tasks));
+    }
+  }
 
   changeHandler() {
     if (this.newTaskCtrl.valid) {
